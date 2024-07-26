@@ -51,4 +51,25 @@ public class StackTests {
             assertEquals("Stack is empty", e.getMessage());
         }
     }
+
+    @Test
+    public void testEmptyStack() {
+        assertTrue(stack.isEmpty(), "Stack should be empty initially");
+        stack.push(1);
+        assertFalse(stack.isEmpty(), "Stack should not be empty after pushing an element");
+    }
+
+    @Test
+    public void testFullStack() {
+        for (int i = 0; i < 10; i++) {
+            stack.push(i);
+        }
+        assertTrue(stack.isFull(), "Stack should be full after pushing 10 elements");
+        try {
+            stack.push(11);
+            fail("Expected an IllegalStateException to be thrown");
+        } catch (IllegalStateException e) {
+            assertEquals("Stack is full", e.getMessage());
+        }
+    }
 }

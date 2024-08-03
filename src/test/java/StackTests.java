@@ -10,25 +10,25 @@ public class StackTests {
 
     @BeforeEach
     public void setUp() {
-        stack = new Stack();
+        stack = new Stack(10);
     }
 
     @Test
     public void testPush() {
-        stack.push(1);
+        stack.push("text");
         assertEquals(1, stack.peek(), "Top element should be 1 after pushing 1");
     }
 
     @Test
     public void testPop() {
-        stack.push(2);
-        int poppedValue = stack.pop();
+        stack.push("text");
+        String poppedValue = stack.pop();
         assertEquals(2, poppedValue, "Popped value should be 2");
     }
 
     @Test
     public void testPeek() {
-        stack.push(3);
+        stack.push("text");
         assertEquals(3, stack.peek(), "Top element should be 3 after pushing 3");
     }
 
@@ -55,18 +55,20 @@ public class StackTests {
     @Test
     public void testEmptyStack() {
         assertTrue(stack.isEmpty(), "Stack should be empty initially");
-        stack.push(1);
+        stack.push("test");
         assertFalse(stack.isEmpty(), "Stack should not be empty after pushing an element");
     }
 
     @Test
     public void testFullStack() {
-        for (int i = 0; i < 10; i++) {
-            stack.push(i);
+        String test = "text";
+        for (int i = 0; i < 4; i++) {
+            char letter = test.charAt(i);
+            stack.push(String.valueOf(letter));
         }
         assertTrue(stack.isFull(), "Stack should be full after pushing 10 elements");
         try {
-            stack.push(11);
+            stack.push("text");
             fail("Expected an IllegalStateException to be thrown");
         } catch (IllegalStateException e) {
             assertEquals("Stack is full", e.getMessage());

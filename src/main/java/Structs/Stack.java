@@ -1,22 +1,33 @@
 package Structs;
 
-public class Stack {
-    static int[] stack = new int[10];
-    static int top;
 
-    public Stack() {
+public class Stack {
+    static String[] stack = {};
+    static int top = 0;
+
+    public Stack(int capacity) {
+        stack = new String[capacity];
         top = -1;
     }
 
-    public void push(int x) {
+    public void push(String file) {
+        /*if (isFull()){
+            System.out.println("Stack is full");
+        }*/
         if (isFull()) {
-            throw new IllegalStateException("Stack is full");
+            System.out.println("Stack is full");
+            return;
         }
-        stack[++top] = x;
-        System.out.println("Pushed " + x + " to the stack");
+
+        if (isEmpty()) {
+            stack[++top] = file;
+        } else {
+            stack[++top] = file;
+        }
+        System.out.println("Pushed " + file + " to the stack");
     }
 
-    public static int pop() {
+    public static String pop() {
         if (isEmpty()) {
             throw new IllegalStateException("Stack is empty");
         }
@@ -24,7 +35,7 @@ public class Stack {
         return stack[top--];
     }
 
-    public static int peek() {
+    public static String peek() {
         if (isEmpty()) {
             throw new IllegalStateException("Stack is empty");
         }
@@ -34,6 +45,14 @@ public class Stack {
     public static boolean isEmpty() {
         return top == -1;
     }
+
+    /*public static boolean isFull() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return false;
+        }
+        return stack[top] == stack[stack.length - 1];
+    }*/
 
     public static boolean isFull() {
         return top == stack.length - 1;

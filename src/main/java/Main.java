@@ -1,3 +1,4 @@
+import textEditor.FileHandler;
 import textEditor.OpenEditor;
 import java.util.Scanner;
 import Structs.Stack;
@@ -7,14 +8,14 @@ import Structs.Stack;
 public class Main {
     public static void main(String[] args) {
         OpenEditor editFile = new OpenEditor();
-        Stack stack = new Stack();
+        FileHandler fileHandler = new FileHandler();
+        Stack stack = new Stack(10);
         Scanner input = new Scanner(System.in);
-        /*while (true) {
+        while (true) {
             String option = input.nextLine().toLowerCase();
             if (option.equals("exit")) {
                 break;
             }
-
             if (option.equals("ov")) {
                 System.out.println("Enter text to overwrite the file: ");
                 editFile.fileOverWrite();
@@ -26,7 +27,9 @@ public class Main {
                 editFile.fileClear();
             }
 
-        }*/
+        }
+
+
 
     }
 }

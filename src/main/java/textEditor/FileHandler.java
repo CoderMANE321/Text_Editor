@@ -1,16 +1,34 @@
 package textEditor;
 
+import Structs.Stack;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class FileHandler {
     Scanner input = new Scanner(System.in);
     static String filePath = "text.txt";
+    static String directoryPath = "tmp";
+    Stack stack = new Stack(10);
     public static void fileCreator(){
         try {
             File file = new File(filePath);
+            if (file.createNewFile()) {
+                System.out.println("Operation successful. ");
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void tempFileCreator(){
+        try {
+            File file = new File(directoryPath+filePath);
             if (file.createNewFile()) {
                 System.out.println("Operation successful. ");
             } else {
@@ -48,6 +66,21 @@ public class FileHandler {
         textFromFile = text.toString();
         System.out.println("Existing text: " + textFromFile);
         return textFromFile;
+    }
+
+    public static void mkDir() {
+        File file = new File(directoryPath);
+        if (file.mkdir()) {
+
+            // display that the directory is created
+            // as the function returned true
+            System.out.println("Directory is created");
+        }
+        else {
+            // display that the directory cannot be created
+            // as the function returned false
+            System.out.println("Directory cannot be created");
+        }
     }
 
 

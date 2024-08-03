@@ -25,7 +25,14 @@ public class Main {
             } else if (option.equals("c")) {
                 System.out.println("File clear");
                 editFile.fileClear();
+            } else if (option.equals("u")) {
+                System.out.println("File undo");
+                editFile.fileUndo();
+            } else if (option.equals("r")) {
+                System.out.println("File redo");
+                editFile.fileRedo();
             }
+
 
         }
 

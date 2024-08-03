@@ -8,9 +8,10 @@ import java.util.Scanner;
 
 
 public class FileHandler {
-    Scanner input = new Scanner(System.in);
     static String filePath = "text.txt";
-    static String directoryPath = "tmp";
+    static String directoryPath = "tmp/";
+    static String redoFilePath = "redo.txt";
+    static  String undoFilePath = "undo.txt";
     Stack stack = new Stack(10);
     public static void fileCreator(){
         try {
@@ -28,7 +29,7 @@ public class FileHandler {
 
     public static void tempFileCreator(){
         try {
-            File file = new File(directoryPath+filePath);
+            File file = new File(directoryPath+redoFilePath);
             if (file.createNewFile()) {
                 System.out.println("Operation successful. ");
             } else {
@@ -54,6 +55,44 @@ public class FileHandler {
         String textFromFile;
         try {
             File file = new File(filePath);
+            Scanner readFile = new Scanner(file);
+            while (readFile.hasNextLine()) {
+                text.append(readFile.nextLine()).append("\n");
+            }
+            readFile.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        textFromFile = text.toString();
+        System.out.println("Existing text: " + textFromFile);
+        return textFromFile;
+    }
+
+    public static String UndoReadFile() {
+        StringBuilder text = new StringBuilder();
+        String textFromFile;
+        try {
+            File file = new File(directoryPath+undoFilePath);
+            Scanner readFile = new Scanner(file);
+            while (readFile.hasNextLine()) {
+                text.append(readFile.nextLine()).append("\n");
+            }
+            readFile.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        textFromFile = text.toString();
+        System.out.println("Existing text: " + textFromFile);
+        return textFromFile;
+    }
+
+    public static String RedoReadFile() {
+        StringBuilder text = new StringBuilder();
+        String textFromFile;
+        try {
+            File file = new File(directoryPath+redoFilePath);
             Scanner readFile = new Scanner(file);
             while (readFile.hasNextLine()) {
                 text.append(readFile.nextLine()).append("\n");
